@@ -23,7 +23,7 @@ const Event = ({ data }) => {
 
   const handleAddToCalendarClick = () => {
     atcb_action({
-      name: title,
+      name: 'Some Event',
       startDate: '2022-10-14',
       endDate: '2022-10-18',
       options: ['Apple', 'Google'],
@@ -65,7 +65,7 @@ const Event = ({ data }) => {
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  const eventRef = doc(db, 'events', id);
+  const eventRef = doc(db, 'events', '3mpdMMlBCpS3zbzBIOhl');
   const document = await getDoc(eventRef);
   const data = JSON.stringify(document.data());
 
