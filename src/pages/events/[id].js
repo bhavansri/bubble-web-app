@@ -10,7 +10,8 @@ import CalendarIcon from '../../../public/assets/images/calendar.svg';
 
 const Event = ({ data }) => {
   const [displayCalendarButton, setDisplayCalendarButton] = useState(true);
-  const { location, title, note, startDate } = JSON.parse(data);
+  const { locationName, locationDetails, title, note, startDate } =
+    JSON.parse(data);
 
   const handleRSVPChange = (index) => {
     if (index === 0 || index === 1) {
@@ -22,10 +23,11 @@ const Event = ({ data }) => {
 
   const handleAddToCalendarClick = () => {
     atcb_action({
-      name: 'Some Event',
+      name: title,
       startDate: '2022-10-14',
       endDate: '2022-10-18',
       options: ['Apple', 'Google'],
+      location: `${locationName} + " " + ${locationDetails}`,
       timeZone: 'Europe/Berlin',
       trigger: 'click',
       iCalFileName: 'Reminder-Event',
@@ -35,7 +37,8 @@ const Event = ({ data }) => {
   return (
     <div className="m-3">
       <h1 className="font-medium text-5xl mb-2">{title}</h1>
-      <h5 className="font-medium text-xl mb-2">{location}</h5>
+      <h5 className="font-medium text-xl mb-2">{locationName}</h5>
+      <h5 className="font-medium text-xl mb-2">{locationDetails}</h5>
       <h5 className="font-medium text-xl mb-2">
         {moment(new Date(startDate.seconds * 1000)).format(
           'dddd, MMMM Do YYYY'
@@ -62,7 +65,7 @@ const Event = ({ data }) => {
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  const eventRef = doc(db, 'events', '3bxTD0MdFoWHyQChdVPE');
+  const eventRef = doc(db, 'events', id);
   const document = await getDoc(eventRef);
   const data = JSON.stringify(document.data());
 
