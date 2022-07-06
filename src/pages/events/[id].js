@@ -1,7 +1,7 @@
-import { collection, getDoc, doc } from 'firebase/firestore';
-import { atcb_action } from 'add-to-calendar-button';
+import { getDoc, doc } from 'firebase/firestore';
+import { atcbAction } from 'add-to-calendar-button';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { db } from '../../utils/firebase-config.ts';
 import { Dropdown } from '../../dropdown/Dropdown.tsx';
@@ -22,7 +22,7 @@ const Event = ({ data }) => {
   };
 
   const handleAddToCalendarClick = () => {
-    atcb_action({
+    atcbAction({
       name: 'Some Event',
       startDate: '2022-10-14',
       endDate: '2022-10-18',
@@ -65,7 +65,7 @@ const Event = ({ data }) => {
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  const eventRef = doc(db, 'events', '3mpdMMlBCpS3zbzBIOhl');
+  const eventRef = doc(db, 'events', id);
   const document = await getDoc(eventRef);
   const data = JSON.stringify(document.data());
 

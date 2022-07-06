@@ -5,11 +5,11 @@ type IDropdownProps = {
   handleRSVPChange: (index: number) => {};
 };
 
-const useOutsideClick = (callback) => {
+const useOutsideClick = (callback: () => void) => {
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const handleClick = (event) => {
+    const handleClick = (event: any) => {
       if (ref.current && !ref.current.contains(event.target)) {
         callback();
       }
