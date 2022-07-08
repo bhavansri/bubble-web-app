@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 type IDropdownProps = {
   choices: string[];
   handleRSVPChange: (index: number) => {};
+  selectedIndex: number;
 };
 
 const useOutsideClick = (callback: () => void) => {
@@ -27,7 +28,7 @@ const useOutsideClick = (callback: () => void) => {
 
 const Dropdown = (props: IDropdownProps) => {
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { selectedIndex } = props;
 
   const handleClickOutside = () => {
     setShowOptions(false);
@@ -36,7 +37,7 @@ const Dropdown = (props: IDropdownProps) => {
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div className="relative text-left w-1/6">
+    <div className="relative text-left w-60 pb-2 my-5">
       <div>
         <button
           ref={ref}
@@ -68,7 +69,7 @@ const Dropdown = (props: IDropdownProps) => {
 
       {showOptions && (
         <div
-          className="origin-top-right absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="origin-top-right absolute left-0 mt-2 w-60 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
@@ -84,7 +85,6 @@ const Dropdown = (props: IDropdownProps) => {
                   role="menuitem"
                   tabIndex={-1}
                   onClick={() => {
-                    setSelectedIndex(index);
                     setShowOptions(false);
                     props.handleRSVPChange(index);
                   }}
