@@ -4,6 +4,7 @@ import { atcb_action } from 'add-to-calendar-button';
 import moment from 'moment';
 import { useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import { db } from '../../utils/firebase-config.ts';
 import { Dropdown } from '../../dropdown/Dropdown.tsx';
 import { GifImage } from '../../gifImage/GifImage.tsx';
@@ -84,6 +85,7 @@ const Event = ({
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [rsvpIndex, setRsvpIndex] = useState(0);
+  const [gif, setGif] = useState(null);
   const firebaseRef = doc(db, 'events', String(id));
 
   const handleSubmit = async () => {
@@ -109,48 +111,71 @@ const Event = ({
     setRsvpIndex(index);
   };
 
+  const handleGifChange = async (data) => {
+    setGif(data);
+  };
+
   return (
-    <div className="m-3">
-      <h1 className="font-medium text-2xl mb-2">{title}</h1>
-      <h5 className="font-medium text-md mb-2">
-        {locationName} | {locationDetails}
-      </h5>
-      <h5 className="font-medium text-md mb-2">
-        {moment(new Date(startDate * 1000)).format('dddd, MMMM Do YYYY')}
-      </h5>
-      <h6 className="font-medium text-base mb-2">{note}</h6>
-      <form onSubmit={handleSubmit} className="mt-20">
-        <label className="block mb-2 text-sm font-medium">First name</label>
-        <input
-          type="text"
-          id="first_name"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-60 p-2.5"
-          placeholder="John"
-          value={firstName}
-          onChange={(event) => {
-            setFirstName(event.target.value);
-          }}
-          required
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <meta property="og:title" content={title} key="ogtitle" />
+        <meta
+          property="og:url"
+          content={`https://bubble-web-app.vercel.app/`}
         />
-        <Dropdown
-          choices={rsvpChoices}
-          handleRSVPChange={handleRSVPChange}
-          selectedIndex={rsvpIndex}
+        <meta property="og:site_name" content={'Bubble Cal'} key="ogsitename" />
+        <meta
+          property="og:description"
+          content={'Manage your personal schedule'}
+          key="ogdesc"
         />
-        {sentResponse ? (
-          <div>
+
+        <title>{title}</title>
+      </Head>
+      <div className="m-3">
+        <h1 className="font-medium text-2xl mb-2">{title}</h1>
+        <h5 className="font-medium text-md mb-2">
+          {locationName} | {locationDetails}
+        </h5>
+        <h5 className="font-medium text-md mb-2">
+          {moment(new Date(startDate * 1000)).format('dddd, MMMM Do YYYY')}
+        </h5>
+        <h6 className="font-medium text-base mb-2">{note}</h6>
+        <form onSubmit={handleSubmit} className="mt-20">
+          <label className="block mb-2 text-sm font-medium">First name</label>
+          <input
+            type="text"
+            id="first_name"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-60 p-2.5"
+            placeholder="John"
+            value={firstName}
+            onChange={(event) => {
+              setFirstName(event.target.value);
+            }}
+            required
+          />
+          <Dropdown
+            choices={rsvpChoices}
+            handleRSVPChange={handleRSVPChange}
+            selectedIndex={rsvpIndex}
+          />
+          {sentResponse ? (
             <div>
-              <Image src={CheckIcon} alt="Checkmark Icon" />
-              <p>Response Submitted.</p>
+              <div>
+                <Image src={CheckIcon} alt="Checkmark Icon" />
+                <p>Response Submitted.</p>
+              </div>
+              <AddToCalendarButton />
             </div>
-            <AddToCalendarButton />
-          </div>
-        ) : (
-          <SubmitButton loading={loading} />
-        )}
-      </form>
-      <GifImage />
-    </div>
+          ) : (
+            <SubmitButton loading={loading} />
+          )}
+        </form>
+        <GifImage handleGifChange={handleGifChange} gif={gif} />
+      </div>
+    </>
   );
 };
 
