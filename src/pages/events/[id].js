@@ -121,6 +121,7 @@ const Event = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <meta property="og:title" content={title} key="ogtitle" />
+        <meta property="og:image" content={gif.url} key="ogimage" />
         <meta
           property="og:url"
           content={`https://bubble-web-app.vercel.app/`}
