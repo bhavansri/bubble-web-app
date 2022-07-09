@@ -123,7 +123,9 @@ const Event = ({
         <meta property="og:title" content={title} key="ogtitle" />
         <meta
           property="og:image"
-          content={'https://ia.media-imdb.com/images/rock.jpg'}
+          content={
+            'https://images.dog.ceo/breeds/mastiff-bull/n02108422_311.jpg'
+          }
           key="ogimage"
         />
         <meta
