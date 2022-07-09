@@ -122,7 +122,7 @@ const Event = ({
         <meta charSet="utf-8" />
         <meta property="og:title" content={title} key="ogtitle" />
         <meta
-          property="og:image"
+          property="og:image:secure_url"
           content={
             'https://images.dog.ceo/breeds/mastiff-bull/n02108422_311.jpg'
           }
