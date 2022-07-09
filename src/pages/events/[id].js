@@ -5,6 +5,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
+import { GiphyFetch } from '@giphy/js-fetch-api';
 import { db } from '../../utils/firebase-config.ts';
 import { Dropdown } from '../../dropdown/Dropdown.tsx';
 import { GifImage } from '../../gifImage/GifImage.tsx';
@@ -80,12 +81,12 @@ const Event = ({
   locationDetails,
   note,
   attendees,
+  gif,
 }) => {
   const [sentResponse, setSentResponse] = useState(false);
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [rsvpIndex, setRsvpIndex] = useState(0);
-  const [gif, setGif] = useState(null);
   const firebaseRef = doc(db, 'events', String(id));
 
   const handleSubmit = async () => {
@@ -120,23 +121,17 @@ const Event = ({
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta property="og:title" content={title} key="ogtitle" />
-        <meta
-          property="og:image:secure_url"
-          content={
-            'https://images.dog.ceo/breeds/mastiff-bull/n02108422_311.jpg'
-          }
-          key="ogimage"
-        />
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content={gif.url} />
+        <meta name="twitter:image" content={gif.url} />
         <meta
           property="og:url"
           content={`https://bubble-web-app.vercel.app/`}
         />
-        <meta property="og:site_name" content={'Bubble Cal'} key="ogsitename" />
+        <meta property="og:site_name" content={'Bubble Cal'} />
         <meta
           property="og:description"
           content={'Manage your personal schedule'}
-          key="ogdesc"
         />
 
         <title>{title}</title>
@@ -180,10 +175,20 @@ const Event = ({
             <SubmitButton loading={loading} />
           )}
         </form>
-        <GifImage handleGifChange={handleGifChange} gif={gif} />
+        <GifImage gif={gif} />
       </div>
     </>
   );
+};
+
+const handleRandomGifGeneration = async () => {
+  const giphyFetch = new GiphyFetch('6sPohQWdItR2MgaWgyRNN1MZQhMWuPyI');
+  const { data } = await giphyFetch.random({
+    tag: 'excited',
+    type: 'gifs',
+  });
+
+  return data;
 };
 
 export async function getServerSideProps(context) {
@@ -191,6 +196,7 @@ export async function getServerSideProps(context) {
   const eventRef = doc(db, 'events', id);
   const document = await getDoc(eventRef);
   const data = document.data();
+  const gif = await handleRandomGifGeneration();
 
   const { title, locationName, locationDetails, note, attendees } = data;
   const startDate = data.startDate.seconds;
@@ -204,6 +210,7 @@ export async function getServerSideProps(context) {
       locationDetails,
       note,
       attendees,
+      gif,
     },
   };
 }
