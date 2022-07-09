@@ -112,10 +112,6 @@ const Event = ({
     setRsvpIndex(index);
   };
 
-  const handleGifChange = async (data) => {
-    setGif(data);
-  };
-
   return (
     <>
       <Head>
