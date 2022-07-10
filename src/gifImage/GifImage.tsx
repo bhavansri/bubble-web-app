@@ -6,7 +6,7 @@ type IGifImageProps = {
 };
 
 const GifImage = (props: IGifImageProps) => {
-  return <Gif gif={props.gif} width={400} noLink={true} />;
+  return <Gif gif={props.gif} width={350} noLink={true} className="my-5" />;
 };
 
 export { GifImage };

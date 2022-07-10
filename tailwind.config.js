@@ -15,6 +15,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        cream: '#F9F2ED',
+        bubbleblue: '#3AB0FF',
+        bubblered: '#F87474',
         primary: {
           100: '#E6F6FE',
           200: '#C0EAFC',
