@@ -1,4 +1,4 @@
-import { CoolBackground } from '../../public/assets/cool-background.png';
+import CoolBackground from '../../public/assets/cool-background.png';
 import { AppConfig } from '../utils/AppConfig';
 
 type ILogoProps = {
