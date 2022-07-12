@@ -65,8 +65,10 @@ const Event = ({
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta property="og:title" content={title} />
-        <meta property="og:image" content={gif.url} />
+        <meta
+          property="og:title"
+          content={`${title} \n At ${locationName} \n Starts at ${startDate} `}
+        />
         <meta property="og:url" content={`https://www.bubblecalendar.app/`} />
         <meta property="og:site_name" content={'Bubble Cal'} />
         <meta
