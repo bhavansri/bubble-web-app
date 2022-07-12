@@ -119,8 +119,18 @@ const Event = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <meta property="og:title" content={title} />
-        <meta property="og:image" content={OpenGraphBackground} />
-        <meta name="twitter:image" content={OpenGraphBackground} />
+        <meta
+          property="og:image"
+          content={
+            'https://images.dog.ceo/breeds/dachshund/Dachshund_rabbit.jpg'
+          }
+        />
+        <meta
+          name="twitter:image"
+          content={
+            'https://images.dog.ceo/breeds/dachshund/Dachshund_rabbit.jpg'
+          }
+        />
         <meta
           property="og:url"
           content={`https://bubble-web-app.vercel.app/`}
