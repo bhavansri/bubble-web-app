@@ -15,16 +15,16 @@ import CheckIcon from '../../../public/assets/images/check.svg';
 
 const rsvpChoices = ['ATTENDING', 'MAYBE', 'DECLINED'];
 
-const AddToCalendarButton = ({ title, formattedStartDate, location }) => {
+const AddToCalendarButton = ({ title, location }) => {
   const handleAddToCalendarClick = () => {
     atcb_action({
-      name: 'Some Event',
+      name: `${title}`,
       startDate: '2022-07-17',
       startTime: '18:00',
       endDate: '2022-07-17',
       endTime: '21:00',
       options: ['Apple', 'Google'],
-      location: `Markham Main Street`,
+      location: `${location}`,
       timeZone: 'Europe/Berlin',
       trigger: 'click',
       iCalFileName: 'Reminder-Event',
@@ -161,7 +161,6 @@ const Event = ({
               </div>
               <AddToCalendarButton
                 title={title}
-                formattedStartDate={formattedStartDate}
                 location={`${locationName} | ${locationDetails}`}
               />
             </>
