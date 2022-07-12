@@ -76,7 +76,7 @@ const Event = ({
         <meta property="og:site_name" content={'Bubble Cal'} />
         <meta
           property="og:image"
-          content={`https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2`}
+          content={`https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg`}
         />
         <meta
           property="og:description"
