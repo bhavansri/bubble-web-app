@@ -131,14 +131,11 @@ const Event = ({
             'https://images.dog.ceo/breeds/dachshund/Dachshund_rabbit.jpg'
           }
         />
-        <meta
-          property="og:url"
-          content={`https://bubble-web-app.vercel.app/`}
-        />
+        <meta property="og:url" content={`https://www.bubblecalendar.app/`} />
         <meta property="og:site_name" content={'Bubble Cal'} />
         <meta
           property="og:description"
-          content={'Manage your personal schedule'}
+          content={'Social events organized in seconds.'}
         />
 
         <title>{title}</title>
