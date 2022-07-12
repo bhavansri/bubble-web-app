@@ -180,7 +180,7 @@ const Event = ({
 const handleRandomGifGeneration = async () => {
   const giphyFetch = new GiphyFetch('6sPohQWdItR2MgaWgyRNN1MZQhMWuPyI');
   const { data } = await giphyFetch.random({
-    tag: 'excited',
+    tag: 'wedding',
     type: 'gifs',
   });
 
