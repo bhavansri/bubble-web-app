@@ -12,6 +12,7 @@ import { GifImage } from '../../gifImage/GifImage.tsx';
 import CalendarIcon from '../../../public/assets/images/calendar.svg';
 import SendIcon from '../../../public/assets/images/send.svg';
 import CheckIcon from '../../../public/assets/images/check.svg';
+import OpenGraphBackground from '../../../public/assets/images/cool-background.png';
 
 const rsvpChoices = ['ATTENDING', 'MAYBE', 'DECLINED'];
 
@@ -118,8 +119,8 @@ const Event = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <meta property="og:title" content={title} />
-        <meta property="og:image" content={gif.url} />
-        <meta name="twitter:image" content={gif.url} />
+        <meta property="og:image" content={OpenGraphBackground} />
+        <meta name="twitter:image" content={OpenGraphBackground} />
         <meta
           property="og:url"
           content={`https://bubble-web-app.vercel.app/`}
