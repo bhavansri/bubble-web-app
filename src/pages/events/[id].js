@@ -12,6 +12,7 @@ import { GifImage } from '../../gifImage/GifImage.tsx';
 import CalendarIcon from '../../../public/assets/images/calendar.svg';
 import SendIcon from '../../../public/assets/images/send.svg';
 import CheckIcon from '../../../public/assets/images/check.svg';
+import OGImage from '../../../public/assets/images/promo.png';
 
 const rsvpChoices = ['ATTENDING', 'MAYBE', 'DECLINED'];
 
@@ -74,10 +75,7 @@ const Event = ({
         <meta property="og:title" content={`${title} \n @ ${locationName}`} />
         <meta property="og:url" content={`Bubble Calendar`} />
         <meta property="og:site_name" content={'Bubble Cal'} />
-        <meta
-          property="og:image:secure"
-          content={`https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg`}
-        />
+        <meta property="og:image:secure" content={OGImage} />
         <meta
           property="og:description"
           content={`Happening on ${formattedStartDate}`}
