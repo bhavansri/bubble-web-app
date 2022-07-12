@@ -1,4 +1,4 @@
-import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import { getDoc, doc } from 'firebase/firestore';
 // eslint-disable-next-line camelcase
 import { atcb_action } from 'add-to-calendar-button';
 import moment from 'moment';
