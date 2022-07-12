@@ -67,7 +67,9 @@ const Event = ({
         <meta charSet="utf-8" />
         <meta
           property="og:title"
-          content={`${title} \n At ${locationName} \n Starts at ${startDate} `}
+          content={`${title} \n @ ${locationName} \n Starts at ${moment(
+            new Date(startDate * 1000)
+          ).format('dddd, MMMM Do YYYY')} `}
         />
         <meta property="og:url" content={`https://www.bubblecalendar.app/`} />
         <meta property="og:site_name" content={'Bubble Cal'} />
