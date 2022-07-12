@@ -69,13 +69,7 @@ const Event = ({
         <meta
           property="og:image"
           content={
-            'https://images.dog.ceo/breeds/dachshund/Dachshund_rabbit.jpg'
-          }
-        />
-        <meta
-          name="twitter:image"
-          content={
-            'https://images.dog.ceo/breeds/dachshund/Dachshund_rabbit.jpg'
+            'https://media1.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif?cid=ecf05e47ofg2mv9nghnis93yjrxd59r6ya92bxz5f2fcqnr2&rid=giphy.gif&ct=g'
           }
         />
         <meta property="og:url" content={`https://www.bubblecalendar.app/`} />
