@@ -15,12 +15,14 @@ import CheckIcon from '../../../public/assets/images/check.svg';
 
 const rsvpChoices = ['ATTENDING', 'MAYBE', 'DECLINED'];
 
-const AddToCalendarButton = () => {
+const AddToCalendarButton = ({ title, formattedStartDate, location }) => {
   const handleAddToCalendarClick = () => {
     atcb_action({
       name: 'Some Event',
-      startDate: '2022-10-14',
-      endDate: '2022-10-18',
+      startDate: '2022-07-17',
+      startTime: '18:00',
+      endDate: '2022-07-17',
+      endTime: '21:00',
       options: ['Apple', 'Google'],
       location: `Markham Main Street`,
       timeZone: 'Europe/Berlin',
@@ -52,6 +54,10 @@ const Event = ({
   const [firstName, setFirstName] = useState('');
   const [rsvpIndex, setRsvpIndex] = useState(0);
 
+  const formattedStartDate = moment(new Date(startDate * 1000)).format(
+    'dddd, MMMM Do YYYY'
+  );
+
   const handleSubmit = async () => {
     setSentResponse(true);
   };
@@ -65,17 +71,16 @@ const Event = ({
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta
-          property="og:title"
-          content={`${title} \n @ ${locationName} \n Starts at ${moment(
-            new Date(startDate * 1000)
-          ).format('dddd, MMMM Do YYYY')} `}
-        />
-        <meta property="og:url" content={`https://www.bubblecalendar.app/`} />
+        <meta property="og:title" content={`${title} \n @ ${locationName}`} />
+        <meta property="og:url" content={`Bubble Calendar`} />
         <meta property="og:site_name" content={'Bubble Cal'} />
         <meta
+          property="og:image"
+          content={`https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2`}
+        />
+        <meta
           property="og:description"
-          content={'Social events organized in seconds.'}
+          content={`Happening on ${formattedStartDate}`}
         />
 
         <title>{title}</title>
@@ -124,7 +129,7 @@ const Event = ({
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 ></path>
               </svg>
-              {moment(new Date(startDate * 1000)).format('dddd, MMMM Do YYYY')}
+              {formattedStartDate}
             </span>
           </div>
           <span className="block bg-slate-100 text-slate-800 text-md font-medium px-2.5 py-0.5 rounded dark:bg-slate-200 dark:text-slate-900 break-all mr-2 self-stretch">
@@ -154,7 +159,11 @@ const Event = ({
                 <Image src={CheckIcon} alt="Checkmark Icon" />
                 <p>Response Submitted.</p>
               </div>
-              <AddToCalendarButton />
+              <AddToCalendarButton
+                title={title}
+                formattedStartDate={formattedStartDate}
+                location={`${locationName} | ${locationDetails}`}
+              />
             </>
           ) : (
             <button
